@@ -1,26 +1,69 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* Warna & font sama dengan HTML asli (tailwind.config di versi HTML) */
+@theme {
+    --color-smala-50: #f0fdf4;
+    --color-smala-100: #dcfce7;
+    --color-smala-500: #22c55e;
+    --color-smala-600: #16a34a;
+    --color-smala-700: #15803d;
+    --color-smala-800: #166534;
+    --color-smala-900: #14532d;
+
+    --color-accent-navy: #0f172a;
+    --color-accent-gold: #f59e0b;
+    --color-accent-blue: #3b82f6;
+    --color-accent-purple: #8b5cf6;
+
+    --font-sans: 'Inter', sans-serif;
+
+    /* Samakan ukuran bayangan/blur dengan Tailwind v3 (yang dipakai HTML asli) */
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --blur-sm: 4px;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* Perilaku bawaan Tailwind v3 agar tampilan identik */
+@layer base {
+    *,
+    ::after,
+    ::before,
+    ::backdrop,
+    ::file-selector-button {
+        border-color: var(--color-gray-200, currentColor);
+    }
+    button:not(:disabled),
+    [role="button"]:not(:disabled) {
+        cursor: pointer;
+    }
+    input::placeholder,
+    textarea::placeholder {
+        color: var(--color-gray-400);
+    }
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Inter', sans-serif;
+    background-color: #f8fafc;
+}
+.gradient-banner {
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #15803d 100%);
+}
+.card-shadow {
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.01);
+}
+.glass-header {
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(10px);
+}
+/* Custom scrollbar */
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: #f1f5f9; }
+::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+
+/* Tab admin */
+.tab-btn.is-active {
+    color: #15803d;
+    background: #f0fdf4;
+    border-color: #dcfce7;
 }
